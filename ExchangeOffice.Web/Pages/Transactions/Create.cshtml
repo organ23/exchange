@@ -1,0 +1,205 @@
+@page
+@model ExchangeOffice.Web.Pages.Transactions.CreateModel
+@{
+    ViewData["Title"] = "New Transaction";
+}
+
+<div class="container-fluid px-4">
+    <h1 class="mt-4">New Transaction</h1>
+    <ol class="breadcrumb mb-4">
+        <li class="breadcrumb-item"><a asp-page="/Index">Dashboard</a></li>
+        <li class="breadcrumb-item"><a asp-page="/Transactions/Index">Transactions</a></li>
+        <li class="breadcrumb-item active">New Transaction</li>
+    </ol>
+    
+    <div class="row">
+        <div class="col-md-8">
+            <div class="card mb-4">
+                <div class="card-header">
+                    <i class="bi bi-arrow-left-right me-1"></i>
+                    Transaction Details
+                </div>
+                <div class="card-body">
+                    <form method="post" id="transactionForm">
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                <label asp-for="Transaction.Date" class="form-label"></label>
+                                <input asp-for="Transaction.Date" class="form-control" type="datetime-local" />
+                                <span asp-validation-for="Transaction.Date" class="text-danger"></span>
+                            </div>
+                            <div class="col-md-6">
+                                <label asp-for="Transaction.CustomerId" class="form-label">Customer</label>
+                                <div class="input-group">
+                                    <select asp-for="Transaction.CustomerId" class="form-select" asp-items="Model.CustomerSelectList">
+                                        <option value="">-- Walk-in Customer --</option>
+                                    </select>
+                                    <a asp-page="/Customers/Create" class="btn btn-outline-secondary" target="_blank">
+                                        <i class="bi bi-plus-circle"></i> New
+                                    </a>
+                                </div>
+                                <span asp-validation-for="Transaction.CustomerId" class="text-danger"></span>
+                            </div>
+                        </div>
+                        
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                <label asp-for="Transaction.FromCurrencyId" class="form-label">From Currency</label>
+                                <select asp-for="Transaction.FromCurrencyId" class="form-select" asp-items="Model.CurrencySelectList" id="fromCurrency">
+                                    <option value="">-- Select Currency --</option>
+                                </select>
+                                <span asp-validation-for="Transaction.FromCurrencyId" class="text-danger"></span>
+                            </div>
+                            <div class="col-md-6">
+                                <label asp-for="Transaction.FromAmount" class="form-label">From Amount</label>
+                                <input asp-for="Transaction.FromAmount" class="form-control" id="fromAmount" />
+                                <span asp-validation-for="Transaction.FromAmount" class="text-danger"></span>
+                            </div>
+                        </div>
+                        
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                <label asp-for="Transaction.ToCurrencyId" class="form-label">To Currency</label>
+                                <select asp-for="Transaction.ToCurrencyId" class="form-select" asp-items="Model.CurrencySelectList" id="toCurrency">
+                                    <option value="">-- Select Currency --</option>
+                                </select>
+                                <span asp-validation-for="Transaction.ToCurrencyId" class="text-danger"></span>
+                            </div>
+                            <div class="col-md-6">
+                                <label asp-for="Transaction.ToAmount" class="form-label">To Amount</label>
+                                <input asp-for="Transaction.ToAmount" class="form-control" id="toAmount" readonly />
+                                <span asp-validation-for="Transaction.ToAmount" class="text-danger"></span>
+                            </div>
+                        </div>
+                        
+                        <div class="row mb-3">
+                            <div class="col-md-4">
+                                <label asp-for="Transaction.Rate" class="form-label">Exchange Rate</label>
+                                <input asp-for="Transaction.Rate" class="form-control" id="rate" readonly />
+                                <span asp-validation-for="Transaction.Rate" class="text-danger"></span>
+                            </div>
+                            <div class="col-md-4">
+                                <label asp-for="Transaction.Fee" class="form-label">Fee</label>
+                                <input asp-for="Transaction.Fee" class="form-control" id="fee" />
+                                <span asp-validation-for="Transaction.Fee" class="text-danger"></span>
+                            </div>
+                            <div class="col-md-4">
+                                <label class="form-label">Total</label>
+                                <input type="text" class="form-control" id="total" readonly />
+                            </div>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label asp-for="Transaction.Notes" class="form-label"></label>
+                            <textarea asp-for="Transaction.Notes" class="form-control" rows="3"></textarea>
+                            <span asp-validation-for="Transaction.Notes" class="text-danger"></span>
+                        </div>
+                        
+                        <div class="d-flex justify-content-between">
+                            <button type="submit" class="btn btn-primary">
+                                <i class="bi bi-save"></i> Complete Transaction
+                            </button>
+                            <a asp-page="./Index" class="btn btn-secondary">
+                                <i class="bi bi-arrow-left"></i> Back to List
+                            </a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-md-4">
+            <div class="card mb-4">
+                <div class="card-header">
+                    <i class="bi bi-currency-exchange me-1"></i>
+                    Current Exchange Rates
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-bordered table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Currency</th>
+                                    <th>Buy Rate</th>
+                                    <th>Sell Rate</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var currency in Model.Currencies)
+                                {
+                                    <tr>
+                                        <td>@currency.Code</td>
+                                        <td>@currency.BuyRate.ToString("N4")</td>
+                                        <td>@currency.SellRate.ToString("N4")</td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+    <script>
+        // Store currency data for calculations
+        const currencies = @Html.Raw(Json.Serialize(Model.Currencies));
+        
+        // Calculate exchange rate and to amount when currencies or from amount changes
+        function calculateExchange() {
+            const fromCurrencyId = parseInt($("#fromCurrency").val());
+            const toCurrencyId = parseInt($("#toCurrency").val());
+            const fromAmount = parseFloat($("#fromAmount").val()) || 0;
+            
+            if (fromCurrencyId && toCurrencyId && fromAmount > 0) {
+                const fromCurrency = currencies.find(c => c.id === fromCurrencyId);
+                const toCurrency = currencies.find(c => c.id === toCurrencyId);
+                
+                if (fromCurrency && toCurrency) {
+                    // Use sell rate for the currency we're selling to the customer
+                    // Use buy rate for the currency we're buying from the customer
+                    const rate = fromCurrency.sellRate / toCurrency.buyRate;
+                    const toAmount = fromAmount / rate;
+                    
+                    $("#rate").val(rate.toFixed(4));
+                    $("#toAmount").val(toAmount.toFixed(2));
+                    
+                    // Calculate fee (example: 1% of from amount)
+                    const fee = fromAmount * 0.01;
+                    $("#fee").val(fee.toFixed(2));
+                    
+                    // Calculate total
+                    const total = toAmount - fee;
+                    $("#total").val(total.toFixed(2));
+                }
+            }
+        }
+        
+        $(document).ready(function() {
+            // Set default date to now
+            if (!$("#Transaction_Date").val()) {
+                const now = new Date();
+                const localDateTime = new Date(now.getTime() - now.getTimezoneOffset() * 60000).toISOString().slice(0, 16);
+                $("#Transaction_Date").val(localDateTime);
+            }
+            
+            // Calculate exchange when inputs change
+            $("#fromCurrency, #toCurrency, #fromAmount").change(calculateExchange);
+            
+            // Recalculate when fee changes
+            $("#fee").change(function() {
+                const toAmount = parseFloat($("#toAmount").val()) || 0;
+                const fee = parseFloat($("#fee").val()) || 0;
+                const total = toAmount - fee;
+                $("#total").val(total.toFixed(2));
+            });
+            
+            // Initial calculation
+            calculateExchange();
+        });
+    </script>
+}

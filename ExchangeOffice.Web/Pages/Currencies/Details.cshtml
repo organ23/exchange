@@ -1,0 +1,91 @@
+@page "{id:int}"
+@model ExchangeOffice.Web.Pages.Currencies.DetailsModel
+@{
+    ViewData["Title"] = "Currency Details";
+}
+
+<div class="container-fluid px-4">
+    <h1 class="mt-4">Currency Details</h1>
+    <ol class="breadcrumb mb-4">
+        <li class="breadcrumb-item"><a asp-page="/Index">Dashboard</a></li>
+        <li class="breadcrumb-item"><a asp-page="/Currencies/Index">Currencies</a></li>
+        <li class="breadcrumb-item active">Details</li>
+    </ol>
+    
+    <div class="row">
+        <div class="col-md-6">
+            <div class="card mb-4">
+                <div class="card-header">
+                    <i class="bi bi-currency-exchange me-1"></i>
+                    Currency Information
+                </div>
+                <div class="card-body">
+                    <dl class="row">
+                        <dt class="col-sm-4">Code:</dt>
+                        <dd class="col-sm-8">@Model.Currency.Code</dd>
+                        
+                        <dt class="col-sm-4">Name:</dt>
+                        <dd class="col-sm-8">@Model.Currency.Name</dd>
+                        
+                        <dt class="col-sm-4">Buy Rate:</dt>
+                        <dd class="col-sm-8">@Model.Currency.BuyRate.ToString("N4")</dd>
+                        
+                        <dt class="col-sm-4">Sell Rate:</dt>
+                        <dd class="col-sm-8">@Model.Currency.SellRate.ToString("N4")</dd>
+                        
+                        <dt class="col-sm-4">Last Updated:</dt>
+                        <dd class="col-sm-8">@Model.Currency.LastUpdated.ToString("g")</dd>
+                    </dl>
+                    
+                    <div class="d-flex justify-content-between mt-3">
+                        <a asp-page="./Edit" asp-route-id="@Model.Currency.Id" class="btn btn-primary">
+                            <i class="bi bi-pencil"></i> Edit
+                        </a>
+                        <a asp-page="./Index" class="btn btn-secondary">
+                            <i class="bi bi-arrow-left"></i> Back to List
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-md-6">
+            <div class="card mb-4">
+                <div class="card-header">
+                    <i class="bi bi-clock-history me-1"></i>
+                    Rate History
+                </div>
+                <div class="card-body">
+                    @if (Model.RateHistories.Any())
+                    {
+                        <div class="table-responsive">
+                            <table class="table table-bordered table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>Date</th>
+                                        <th>Buy Rate</th>
+                                        <th>Sell Rate</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var history in Model.RateHistories.OrderByDescending(h => h.EffectiveDate))
+                                    {
+                                        <tr>
+                                            <td>@history.EffectiveDate.ToString("g")</td>
+                                            <td>@history.BuyRate.ToString("N4")</td>
+                                            <td>@history.SellRate.ToString("N4")</td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    }
+                    else
+                    {
+                        <p>No rate history found.</p>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

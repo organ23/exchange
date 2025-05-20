@@ -1,0 +1,62 @@
+@page "{id:int}"
+@model ExchangeOffice.Web.Pages.Customers.DeleteModel
+@{
+    ViewData["Title"] = "Delete Customer";
+}
+
+<div class="container-fluid px-4">
+    <h1 class="mt-4">Delete Customer</h1>
+    <ol class="breadcrumb mb-4">
+        <li class="breadcrumb-item"><a asp-page="/Index">Dashboard</a></li>
+        <li class="breadcrumb-item"><a asp-page="/Customers/Index">Customers</a></li>
+        <li class="breadcrumb-item active">Delete</li>
+    </ol>
+    
+    <div class="row">
+        <div class="col-md-6">
+            <div class="card mb-4">
+                <div class="card-header bg-danger text-white">
+                    <i class="bi bi-exclamation-triangle me-1"></i>
+                    Warning
+                </div>
+                <div class="card-body">
+                    <h5>Are you sure you want to delete this customer?</h5>
+                    
+                    @if (Model.HasTransactions)
+                    {
+                        <div class="alert alert-warning">
+                            <i class="bi bi-exclamation-circle"></i>
+                            <strong>Warning:</strong> This customer has transactions. If you delete this customer, the transactions will remain in the system but will no longer be associated with this customer.
+                        </div>
+                    }
+                    
+                    <dl class="row">
+                        <dt class="col-sm-4">Name:</dt>
+                        <dd class="col-sm-8">@Model.Customer.FirstName @Model.Customer.LastName</dd>
+                        
+                        <dt class="col-sm-4">ID Number:</dt>
+                        <dd class="col-sm-8">@Model.Customer.IdNumber</dd>
+                        
+                        <dt class="col-sm-4">Phone:</dt>
+                        <dd class="col-sm-8">@Model.Customer.PhoneNumber</dd>
+                        
+                        <dt class="col-sm-4">Email:</dt>
+                        <dd class="col-sm-8">@Model.Customer.Email</dd>
+                    </dl>
+                    
+                    <form method="post">
+                        <input type="hidden" asp-for="Customer.Id" />
+                        <div class="d-flex justify-content-between mt-3">
+                            <button type="submit" class="btn btn-danger">
+                                <i class="bi bi-trash"></i> Delete
+                            </button>
+                            <a asp-page="./Index" class="btn btn-secondary">
+                                <i class="bi bi-arrow-left"></i> Back to List
+                            </a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

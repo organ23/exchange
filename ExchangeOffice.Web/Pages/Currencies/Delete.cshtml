@@ -1,0 +1,65 @@
+@page "{id:int}"
+@model ExchangeOffice.Web.Pages.Currencies.DeleteModel
+@{
+    ViewData["Title"] = "Delete Currency";
+}
+
+<div class="container-fluid px-4">
+    <h1 class="mt-4">Delete Currency</h1>
+    <ol class="breadcrumb mb-4">
+        <li class="breadcrumb-item"><a asp-page="/Index">Dashboard</a></li>
+        <li class="breadcrumb-item"><a asp-page="/Currencies/Index">Currencies</a></li>
+        <li class="breadcrumb-item active">Delete</li>
+    </ol>
+    
+    <div class="row">
+        <div class="col-md-6">
+            <div class="card mb-4">
+                <div class="card-header bg-danger text-white">
+                    <i class="bi bi-exclamation-triangle me-1"></i>
+                    Warning
+                </div>
+                <div class="card-body">
+                    <h5>Are you sure you want to delete this currency?</h5>
+                    <p class="text-danger">
+                        <strong>This action cannot be undone.</strong> Deleting this currency will also remove all associated rate history.
+                    </p>
+                    
+                    @if (Model.HasTransactions)
+                    {
+                        <div class="alert alert-danger">
+                            <i class="bi bi-exclamation-circle"></i>
+                            <strong>Cannot delete this currency.</strong> There are transactions associated with this currency.
+                        </div>
+                    }
+                    
+                    <dl class="row">
+                        <dt class="col-sm-4">Code:</dt>
+                        <dd class="col-sm-8">@Model.Currency.Code</dd>
+                        
+                        <dt class="col-sm-4">Name:</dt>
+                        <dd class="col-sm-8">@Model.Currency.Name</dd>
+                        
+                        <dt class="col-sm-4">Buy Rate:</dt>
+                        <dd class="col-sm-8">@Model.Currency.BuyRate.ToString("N4")</dd>
+                        
+                        <dt class="col-sm-4">Sell Rate:</dt>
+                        <dd class="col-sm-8">@Model.Currency.SellRate.ToString("N4")</dd>
+                    </dl>
+                    
+                    <form method="post">
+                        <input type="hidden" asp-for="Currency.Id" />
+                        <div class="d-flex justify-content-between mt-3">
+                            <button type="submit" class="btn btn-danger" @(Model.HasTransactions ? "disabled" : "")>
+                                <i class="bi bi-trash"></i> Delete
+                            </button>
+                            <a asp-page="./Index" class="btn btn-secondary">
+                                <i class="bi bi-arrow-left"></i> Back to List
+                            </a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

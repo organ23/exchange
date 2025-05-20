@@ -1,0 +1,117 @@
+@page "{id:int}"
+@model ExchangeOffice.Web.Pages.Transactions.DetailsModel
+@{
+    ViewData["Title"] = "Transaction Details";
+}
+
+<div class="container-fluid px-4">
+    <h1 class="mt-4">Transaction Details</h1>
+    <ol class="breadcrumb mb-4">
+        <li class="breadcrumb-item"><a asp-page="/Index">Dashboard</a></li>
+        <li class="breadcrumb-item"><a asp-page="/Transactions/Index">Transactions</a></li>
+        <li class="breadcrumb-item active">Details</li>
+    </ol>
+    
+    <div class="row">
+        <div class="col-md-8">
+            <div class="card mb-4">
+                <div class="card-header">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div>
+                            <i class="bi bi-receipt me-1"></i>
+                            Transaction #@Model.Transaction.TransactionNumber
+                        </div>
+                        <div>
+                            <a asp-page="./Print" asp-route-id="@Model.Transaction.Id" class="btn btn-primary btn-sm">
+                                <i class="bi bi-printer"></i> Print Receipt
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <dl class="row">
+                                <dt class="col-sm-5">Transaction #:</dt>
+                                <dd class="col-sm-7">@Model.Transaction.TransactionNumber</dd>
+                                
+                                <dt class="col-sm-5">Date:</dt>
+                                <dd class="col-sm-7">@Model.Transaction.Date.ToString("g")</dd>
+                                
+                                <dt class="col-sm-5">Customer:</dt>
+                                <dd class="col-sm-7">
+                                    @if (Model.Transaction.Customer != null)
+                                    {
+                                        <a asp-page="/Customers/Details" asp-route-id="@Model.Transaction.CustomerId">
+                                            @Model.Transaction.Customer.FirstName @Model.Transaction.Customer.LastName
+                                        </a>
+                                    }
+                                    else
+                                    {
+                                        <span>Walk-in Customer</span>
+                                    }
+                                </dd>
+                                
+                                <dt class="col-sm-5">Staff:</dt>
+                                <dd class="col-sm-7">@Model.Transaction.Staff.FirstName @Model.Transaction.Staff.LastName</dd>
+                            </dl>
+                        </div>
+                        <div class="col-md-6">
+                            <dl class="row">
+                                <dt class="col-sm-5">From Currency:</dt>
+                                <dd class="col-sm-7">@Model.Transaction.FromCurrency.Code (@Model.Transaction.FromCurrency.Name)</dd>
+                                
+                                <dt class="col-sm-5">To Currency:</dt>
+                                <dd class="col-sm-7">@Model.Transaction.ToCurrency.Code (@Model.Transaction.ToCurrency.Name)</dd>
+                                
+                                <dt class="col-sm-5">Exchange Rate:</dt>
+                                <dd class="col-sm-7">@Model.Transaction.Rate.ToString("N4")</dd>
+                                
+                                <dt class="col-sm-5">Fee:</dt>
+                                <dd class="col-sm-7">@Model.Transaction.Fee.ToString("C")</dd>
+                            </dl>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-4">
+                        <div class="card bg-light">
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-md-4 text-center">
+                                        <h5>From Amount</h5>
+                                        <h3>@Model.Transaction.FromCurrency.Code @Model.Transaction.FromAmount.ToString("N2")</h3>
+                                    </div>
+                                    <div class="col-md-4 text-center">
+                                        <h5>Exchange Rate</h5>
+                                        <h3>@Model.Transaction.Rate.ToString("N4")</h3>
+                                    </div>
+                                    <div class="col-md-4 text-center">
+                                        <h5>To Amount</h5>
+                                        <h3>@Model.Transaction.ToCurrency.Code @Model.Transaction.ToAmount.ToString("N2")</h3>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    @if (!string.IsNullOrEmpty(Model.Transaction.Notes))
+                    {
+                        <div class="mt-4">
+                            <h5>Notes</h5>
+                            <p>@Model.Transaction.Notes</p>
+                        </div>
+                    }
+                    
+                    <div class="d-flex justify-content-between mt-4">
+                        <a asp-page="./Index" class="btn btn-secondary">
+                            <i class="bi bi-arrow-left"></i> Back to List
+                        </a>
+                        <a asp-page="./Create" class="btn btn-primary">
+                            <i class="bi bi-plus-circle"></i> New Transaction
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

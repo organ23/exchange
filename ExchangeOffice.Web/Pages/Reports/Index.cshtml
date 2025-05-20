@@ -1,0 +1,162 @@
+@page
+@model ExchangeOffice.Web.Pages.Reports.IndexModel
+@{
+    ViewData["Title"] = "Reports";
+}
+
+<div class="container-fluid px-4">
+    <h1 class="mt-4">Reports</h1>
+    <ol class="breadcrumb mb-4">
+        <li class="breadcrumb-item"><a asp-page="/Index">Dashboard</a></li>
+        <li class="breadcrumb-item active">Reports</li>
+    </ol>
+    
+    <div class="row">
+        <div class="col-md-4 mb-4">
+            <div class="card h-100">
+                <div class="card-header">
+                    <i class="bi bi-calendar-day me-1"></i>
+                    Daily Report
+                </div>
+                <div class="card-body">
+                    <p>View a summary of transactions for a specific day.</p>
+                    <form method="get" asp-page="./Daily">
+                        <div class="mb-3">
+                            <label class="form-label">Select Date</label>
+                            <input type="date" name="date" class="form-control" value="@DateTime.Today.ToString("yyyy-MM-dd")" />
+                        </div>
+                        <button type="submit" class="btn btn-primary">
+                            <i class="bi bi-search"></i> View Report
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-md-4 mb-4">
+            <div class="card h-100">
+                <div class="card-header">
+                    <i class="bi bi-calendar-week me-1"></i>
+                    Weekly Report
+                </div>
+                <div class="card-body">
+                    <p>View a summary of transactions for a specific week.</p>
+                    <form method="get" asp-page="./Weekly">
+                        <div class="mb-3">
+                            <label class="form-label">Select Week</label>
+                            <div class="input-group">
+                                <span class="input-group-text">Week of</span>
+                                <input type="date" name="startDate" class="form-control" value="@DateTime.Today.AddDays(-(int)DateTime.Today.DayOfWeek).ToString("yyyy-MM-dd")" />
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-primary">
+                            <i class="bi bi-search"></i> View Report
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-md-4 mb-4">
+            <div class="card h-100">
+                <div class="card-header">
+                    <i class="bi bi-calendar-month me-1"></i>
+                    Monthly Report
+                </div>
+                <div class="card-body">
+                    <p>View a summary of transactions for a specific month.</p>
+                    <form method="get" asp-page="./Monthly">
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                <label class="form-label">Month</label>
+                                <select name="month" class="form-select">
+                                    @for (int i = 1; i <= 12; i++)
+                                    {
+                                        <option value="@i" selected="@(i == DateTime.Today.Month)">@(new DateTime(2000, i, 1).ToString("MMMM"))</option>
+                                    }
+                                </select>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label">Year</label>
+                                <select name="year" class="form-select">
+                                    @for (int i = DateTime.Today.Year - 5; i <= DateTime.Today.Year; i++)
+                                    {
+                                        <option value="@i" selected="@(i == DateTime.Today.Year)">@i</option>
+                                    }
+                                </select>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-primary">
+                            <i class="bi bi-search"></i> View Report
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="row">
+        <div class="col-md-6 mb-4">
+            <div class="card h-100">
+                <div class="card-header">
+                    <i class="bi bi-currency-exchange me-1"></i>
+                    Currency Report
+                </div>
+                <div class="card-body">
+                    <p>View transactions for a specific currency.</p>
+                    <form method="get" asp-page="./Currency">
+                        <div class="mb-3">
+                            <label class="form-label">Select Currency</label>
+                            <select name="currencyId" class="form-select">
+                                @foreach (var currency in Model.Currencies)
+                                {
+                                    <option value="@currency.Id">@currency.Code - @currency.Name</option>
+                                }
+                            </select>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                <label class="form-label">From Date</label>
+                                <input type="date" name="fromDate" class="form-control" value="@DateTime.Today.AddDays(-30).ToString("yyyy-MM-dd")" />
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label">To Date</label>
+                                <input type="date" name="toDate" class="form-control" value="@DateTime.Today.ToString("yyyy-MM-dd")" />
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-primary">
+                            <i class="bi bi-search"></i> View Report
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-md-6 mb-4">
+            <div class="card h-100">
+                <div class="card-header">
+                    <i class="bi bi-graph-up me-1"></i>
+                    Profit Report
+                </div>
+                <div class="card-body">
+                    <p>View profit summary for a specific period.</p>
+                    <form method="get" asp-page="./Profit">
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                <label class="form-label">From Date</label>
+                                <input type="date" name="fromDate" class="form-control" value="@DateTime.Today.AddDays(-30).ToString("yyyy-MM-dd")" />
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label">To Date</label>
+                                <input type="date" name="toDate" class="form-control" value="@DateTime.Today.ToString("yyyy-MM-dd")" />
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-primary">
+                            <i class="bi bi-search"></i> View Report
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

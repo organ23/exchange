@@ -1,0 +1,77 @@
+@page
+@model ExchangeOffice.Web.Pages.Currencies.IndexModel
+@{
+    ViewData["Title"] = "Currencies";
+}
+
+<div class="container-fluid px-4">
+    <h1 class="mt-4">Currencies</h1>
+    <ol class="breadcrumb mb-4">
+        <li class="breadcrumb-item"><a asp-page="/Index">Dashboard</a></li>
+        <li class="breadcrumb-item active">Currencies</li>
+    </ol>
+    
+    <div class="card mb-4">
+        <div class="card-header">
+            <div class="d-flex justify-content-between align-items-center">
+                <div>
+                    <i class="bi bi-currency-exchange me-1"></i>
+                    Currency List
+                </div>
+                <div>
+                    <a asp-page="Create" class="btn btn-primary btn-sm">
+                        <i class="bi bi-plus-circle"></i> Add Currency
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="card-body">
+            @if (Model.Currencies.Any())
+            {
+                <div class="table-responsive">
+                    <table class="table table-bordered table-striped">
+                        <thead>
+                            <tr>
+                                <th>Code</th>
+                                <th>Name</th>
+                                <th>Buy Rate</th>
+                                <th>Sell Rate</th>
+                                <th>Last Updated</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var currency in Model.Currencies)
+                            {
+                                <tr>
+                                    <td>@currency.Code</td>
+                                    <td>@currency.Name</td>
+                                    <td>@currency.BuyRate.ToString("N4")</td>
+                                    <td>@currency.SellRate.ToString("N4")</td>
+                                    <td>@currency.LastUpdated.ToString("g")</td>
+                                    <td>
+                                        <div class="btn-group" role="group">
+                                            <a asp-page="./Edit" asp-route-id="@currency.Id" class="btn btn-primary btn-sm">
+                                                <i class="bi bi-pencil"></i> Edit
+                                            </a>
+                                            <a asp-page="./Details" asp-route-id="@currency.Id" class="btn btn-info btn-sm">
+                                                <i class="bi bi-info-circle"></i> Details
+                                            </a>
+                                            <a asp-page="./Delete" asp-route-id="@currency.Id" class="btn btn-danger btn-sm">
+                                                <i class="bi bi-trash"></i> Delete
+                                            </a>
+                                        </div>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            }
+            else
+            {
+                <p>No currencies found.</p>
+            }
+        </div>
+    </div>
+</div>

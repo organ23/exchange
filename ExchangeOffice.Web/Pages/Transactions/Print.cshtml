@@ -1,0 +1,102 @@
+@page "{id:int}"
+@model ExchangeOffice.Web.Pages.Transactions.PrintModel
+@{
+    ViewData["Title"] = "Print Receipt";
+    Layout = "_PrintLayout";
+}
+
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-12 text-center mb-4">
+            <h2>Exchange Office</h2>
+            <p>Currency Exchange Receipt</p>
+        </div>
+    </div>
+    
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-body">
+                    <div class="row mb-4">
+                        <div class="col-6">
+                            <h5 class="mb-3">Receipt Details:</h5>
+                            <div><strong>Transaction #:</strong> @Model.Transaction.TransactionNumber</div>
+                            <div><strong>Date:</strong> @Model.Transaction.Date.ToString("g")</div>
+                            <div><strong>Staff:</strong> @Model.Transaction.Staff.FirstName @Model.Transaction.Staff.LastName</div>
+                        </div>
+                        <div class="col-6">
+                            <h5 class="mb-3">Customer:</h5>
+                            @if (Model.Transaction.Customer != null)
+                            {
+                                <div><strong>Name:</strong> @Model.Transaction.Customer.FirstName @Model.Transaction.Customer.LastName</div>
+                                <div><strong>ID Number:</strong> @Model.Transaction.Customer.IdNumber</div>
+                                <div><strong>Phone:</strong> @Model.Transaction.Customer.PhoneNumber</div>
+                            }
+                            else
+                            {
+                                <div>Walk-in Customer</div>
+                            }
+                        </div>
+                    </div>
+                    
+                    <div class="row">
+                        <div class="col-12">
+                            <table class="table table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th>From Currency</th>
+                                        <th>From Amount</th>
+                                        <th>Exchange Rate</th>
+                                        <th>To Currency</th>
+                                        <th>To Amount</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>@Model.Transaction.FromCurrency.Code (@Model.Transaction.FromCurrency.Name)</td>
+                                        <td>@Model.Transaction.FromAmount.ToString("N2")</td>
+                                        <td>@Model.Transaction.Rate.ToString("N4")</td>
+                                        <td>@Model.Transaction.ToCurrency.Code (@Model.Transaction.ToCurrency.Name)</td>
+                                        <td>@Model.Transaction.ToAmount.ToString("N2")</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    
+                    <div class="row mt-4">
+                        <div class="col-6">
+                            @if (!string.IsNullOrEmpty(Model.Transaction.Notes))
+                            {
+                                <div><strong>Notes:</strong> @Model.Transaction.Notes</div>
+                            }
+                        </div>
+                        <div class="col-6 text-end">
+                            <div><strong>Fee:</strong> @Model.Transaction.Fee.ToString("C")</div>
+                            <div><strong>Total Paid:</strong> @Model.Transaction.FromCurrency.Code @Model.Transaction.FromAmount.ToString("N2")</div>
+                            <div><strong>Total Received:</strong> @Model.Transaction.ToCurrency.Code @Model.Transaction.ToAmount.ToString("N2")</div>
+                        </div>
+                    </div>
+                    
+                    <div class="row mt-5">
+                        <div class="col-12 text-center">
+                            <p>Thank you for your business!</p>
+                            <p class="small">This receipt is your proof of transaction.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="row mt-4">
+        <div class="col-12 text-center">
+            <button class="btn btn-primary" onclick="window.print()">
+                <i class="bi bi-printer"></i> Print
+            </button>
+            <a asp-page="./Details" asp-route-id="@Model.Transaction.Id" class="btn btn-secondary">
+                <i class="bi bi-arrow-left"></i> Back to Details
+            </a>
+        </div>
+    </div>
+</div>

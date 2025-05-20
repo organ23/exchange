@@ -1,0 +1,11 @@
+/home/cergo/exchange/ExchangeOffice.Core/bin/Debug/net7.0/ExchangeOffice.Core.deps.json
+/home/cergo/exchange/ExchangeOffice.Core/bin/Debug/net7.0/ExchangeOffice.Core.dll
+/home/cergo/exchange/ExchangeOffice.Core/bin/Debug/net7.0/ExchangeOffice.Core.pdb
+/home/cergo/exchange/ExchangeOffice.Core/obj/Debug/net7.0/ExchangeOffice.Core.GeneratedMSBuildEditorConfig.editorconfig
+/home/cergo/exchange/ExchangeOffice.Core/obj/Debug/net7.0/ExchangeOffice.Core.AssemblyInfoInputs.cache
+/home/cergo/exchange/ExchangeOffice.Core/obj/Debug/net7.0/ExchangeOffice.Core.AssemblyInfo.cs
+/home/cergo/exchange/ExchangeOffice.Core/obj/Debug/net7.0/ExchangeOffice.Core.csproj.CoreCompileInputs.cache
+/home/cergo/exchange/ExchangeOffice.Core/obj/Debug/net7.0/ExchangeOffice.Core.dll
+/home/cergo/exchange/ExchangeOffice.Core/obj/Debug/net7.0/refint/ExchangeOffice.Core.dll
+/home/cergo/exchange/ExchangeOffice.Core/obj/Debug/net7.0/ExchangeOffice.Core.pdb
+/home/cergo/exchange/ExchangeOffice.Core/obj/Debug/net7.0/ref/ExchangeOffice.Core.dll

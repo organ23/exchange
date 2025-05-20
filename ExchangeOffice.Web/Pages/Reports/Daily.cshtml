@@ -1,0 +1,167 @@
+@page
+@model ExchangeOffice.Web.Pages.Reports.DailyModel
+@{
+    ViewData["Title"] = "Daily Report";
+}
+
+<div class="container-fluid px-4">
+    <h1 class="mt-4">Daily Report</h1>
+    <ol class="breadcrumb mb-4">
+        <li class="breadcrumb-item"><a asp-page="/Index">Dashboard</a></li>
+        <li class="breadcrumb-item"><a asp-page="/Reports/Index">Reports</a></li>
+        <li class="breadcrumb-item active">Daily Report</li>
+    </ol>
+    
+    <div class="card mb-4">
+        <div class="card-header">
+            <div class="d-flex justify-content-between align-items-center">
+                <div>
+                    <i class="bi bi-calendar-day me-1"></i>
+                    Daily Report for @Model.ReportDate.ToString("dddd, MMMM d, yyyy")
+                </div>
+                <div>
+                    <a asp-page="./Daily" asp-route-date="@Model.ReportDate.AddDays(-1).ToString("yyyy-MM-dd")" class="btn btn-outline-primary btn-sm">
+                        <i class="bi bi-chevron-left"></i> Previous Day
+                    </a>
+                    <a asp-page="./Daily" asp-route-date="@Model.ReportDate.AddDays(1).ToString("yyyy-MM-dd")" class="btn btn-outline-primary btn-sm">
+                        Next Day <i class="bi bi-chevron-right"></i>
+                    </a>
+                    <button onclick="window.print()" class="btn btn-outline-secondary btn-sm">
+                        <i class="bi bi-printer"></i> Print
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="card-body">
+            <div class="row mb-4">
+                <div class="col-md-3">
+                    <div class="card bg-primary text-white h-100">
+                        <div class="card-body">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div class="me-3">
+                                    <div class="text-white-75 small">Total Transactions</div>
+                                    <div class="text-lg fw-bold">@Model.Transactions.Count()</div>
+                                </div>
+                                <i class="bi bi-arrow-left-right fa-2x"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="card bg-success text-white h-100">
+                        <div class="card-body">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div class="me-3">
+                                    <div class="text-white-75 small">Total Volume</div>
+                                    <div class="text-lg fw-bold">@Model.TotalVolume.ToString("C")</div>
+                                </div>
+                                <i class="bi bi-cash-stack fa-2x"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="card bg-warning text-white h-100">
+                        <div class="card-body">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div class="me-3">
+                                    <div class="text-white-75 small">Total Fees</div>
+                                    <div class="text-lg fw-bold">@Model.TotalFees.ToString("C")</div>
+                                </div>
+                                <i class="bi bi-cash-coin fa-2x"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="card bg-danger text-white h-100">
+                        <div class="card-body">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div class="me-3">
+                                    <div class="text-white-75 small">Total Profit</div>
+                                    <div class="text-lg fw-bold">@Model.TotalProfit.ToString("C")</div>
+                                </div>
+                                <i class="bi bi-graph-up-arrow fa-2x"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            @if (Model.Transactions.Any())
+            {
+                <div class="table-responsive">
+                    <table class="table table-bordered table-striped">
+                        <thead>
+                            <tr>
+                                <th>Time</th>
+                                <th>Transaction #</th>
+                                <th>Customer</th>
+                                <th>From</th>
+                                <th>To</th>
+                                <th>Rate</th>
+                                <th>Fee</th>
+                                <th>Staff</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var transaction in Model.Transactions.OrderBy(t => t.Date))
+                            {
+                                <tr>
+                                    <td>@transaction.Date.ToString("HH:mm")</td>
+                                    <td>
+                                        <a asp-page="/Transactions/Details" asp-route-id="@transaction.Id">
+                                            @transaction.TransactionNumber
+                                        </a>
+                                    </td>
+                                    <td>
+                                        @if (transaction.Customer != null)
+                                        {
+                                            <a asp-page="/Customers/Details" asp-route-id="@transaction.CustomerId">
+                                                @transaction.Customer.FirstName @transaction.Customer.LastName
+                                            </a>
+                                        }
+                                        else
+                                        {
+                                            <span>Walk-in Customer</span>
+                                        }
+                                    </td>
+                                    <td>@transaction.FromCurrency.Code @transaction.FromAmount.ToString("N2")</td>
+                                    <td>@transaction.ToCurrency.Code @transaction.ToAmount.ToString("N2")</td>
+                                    <td>@transaction.Rate.ToString("N4")</td>
+                                    <td>@transaction.Fee.ToString("C")</td>
+                                    <td>@transaction.Staff.FirstName @transaction.Staff.LastName</td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+                
+                <div class="mt-4">
+                    <h5>Currency Summary</h5>
+                    <div class="row">
+                        @foreach (var summary in Model.CurrencySummary)
+                        {
+                            <div class="col-md-4 mb-3">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <h5 class="card-title">@summary.Key</h5>
+                                        <div><strong>Bought:</strong> @summary.Value.Bought.ToString("N2")</div>
+                                        <div><strong>Sold:</strong> @summary.Value.Sold.ToString("N2")</div>
+                                        <div><strong>Net:</strong> @((summary.Value.Bought - summary.Value.Sold).ToString("N2"))</div>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                </div>
+            }
+            else
+            {
+                <div class="alert alert-info">
+                    <i class="bi bi-info-circle"></i> No transactions found for this day.
+                </div>
+            }
+        </div>
+    </div>
+</div>

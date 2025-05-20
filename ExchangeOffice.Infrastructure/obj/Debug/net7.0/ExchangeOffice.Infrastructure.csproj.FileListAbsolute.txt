@@ -1,0 +1,17 @@
+/home/cergo/exchange/ExchangeOffice.Infrastructure/bin/Debug/net7.0/ExchangeOffice.Infrastructure.deps.json
+/home/cergo/exchange/ExchangeOffice.Infrastructure/bin/Debug/net7.0/ExchangeOffice.Infrastructure.runtimeconfig.json
+/home/cergo/exchange/ExchangeOffice.Infrastructure/bin/Debug/net7.0/ExchangeOffice.Infrastructure.dll
+/home/cergo/exchange/ExchangeOffice.Infrastructure/bin/Debug/net7.0/ExchangeOffice.Infrastructure.pdb
+/home/cergo/exchange/ExchangeOffice.Infrastructure/bin/Debug/net7.0/ExchangeOffice.Core.dll
+/home/cergo/exchange/ExchangeOffice.Infrastructure/bin/Debug/net7.0/ExchangeOffice.Core.pdb
+/home/cergo/exchange/ExchangeOffice.Infrastructure/obj/Debug/net7.0/ExchangeOffice.Infrastructure.csproj.AssemblyReference.cache
+/home/cergo/exchange/ExchangeOffice.Infrastructure/obj/Debug/net7.0/ExchangeOffice.Infrastructure.GeneratedMSBuildEditorConfig.editorconfig
+/home/cergo/exchange/ExchangeOffice.Infrastructure/obj/Debug/net7.0/ExchangeOffice.Infrastructure.AssemblyInfoInputs.cache
+/home/cergo/exchange/ExchangeOffice.Infrastructure/obj/Debug/net7.0/ExchangeOffice.Infrastructure.AssemblyInfo.cs
+/home/cergo/exchange/ExchangeOffice.Infrastructure/obj/Debug/net7.0/ExchangeOffice.Infrastructure.csproj.CoreCompileInputs.cache
+/home/cergo/exchange/ExchangeOffice.Infrastructure/obj/Debug/net7.0/ExchangeOffice.Infrastructure.csproj.CopyComplete
+/home/cergo/exchange/ExchangeOffice.Infrastructure/obj/Debug/net7.0/ExchangeOffice.Infrastructure.dll
+/home/cergo/exchange/ExchangeOffice.Infrastructure/obj/Debug/net7.0/refint/ExchangeOffice.Infrastructure.dll
+/home/cergo/exchange/ExchangeOffice.Infrastructure/obj/Debug/net7.0/ExchangeOffice.Infrastructure.pdb
+/home/cergo/exchange/ExchangeOffice.Infrastructure/obj/Debug/net7.0/ExchangeOffice.Infrastructure.genruntimeconfig.cache
+/home/cergo/exchange/ExchangeOffice.Infrastructure/obj/Debug/net7.0/ref/ExchangeOffice.Infrastructure.dll
