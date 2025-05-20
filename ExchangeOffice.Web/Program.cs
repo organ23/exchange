@@ -1,13 +1,41 @@
 using ExchangeOffice.Core.Interfaces;
 using ExchangeOffice.Infrastructure.Data;
 using ExchangeOffice.Infrastructure.Repositories;
+using ExchangeOffice.Web.Middleware;
+using ExchangeOffice.Web.Resources;
 using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Localization;
+using Microsoft.AspNetCore.Mvc.Razor;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Options;
+using System.Globalization;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-builder.Services.AddRazorPages();
+builder.Services.AddRazorPages()
+    .AddViewLocalization(LanguageViewLocationExpanderFormat.Suffix)
+    .AddDataAnnotationsLocalization(options => {
+        options.DataAnnotationLocalizerProvider = (type, factory) =>
+            factory.Create(typeof(SharedResource));
+    });
+
+// Add localization
+builder.Services.AddLocalization(options => options.ResourcesPath = "Resources");
+
+// Configure supported cultures
+builder.Services.Configure<RequestLocalizationOptions>(options =>
+{
+    var supportedCultures = new[]
+    {
+        new CultureInfo("en"),
+        new CultureInfo("ar")
+    };
+
+    options.DefaultRequestCulture = new RequestCulture("en");
+    options.SupportedCultures = supportedCultures;
+    options.SupportedUICultures = supportedCultures;
+});
 
 // Add database context
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
@@ -46,6 +74,16 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();
+
+// Configure localization
+var localizationOptions = app.Services.GetService<IOptions<RequestLocalizationOptions>>();
+if (localizationOptions != null)
+{
+    app.UseRequestLocalization(localizationOptions.Value);
+}
+
+// Use custom culture middleware
+app.UseRequestCulture();
 
 app.UseAuthentication();
 app.UseAuthorization();

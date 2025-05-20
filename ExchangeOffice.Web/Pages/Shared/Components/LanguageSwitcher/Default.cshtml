@@ -1,0 +1,21 @@
+@using Microsoft.Extensions.Localization
+@using ExchangeOffice.Web.Resources
+@inject IStringLocalizer<SharedResource> SharedLocalizer
+
+<div class="dropdown">
+    <button class="btn btn-outline-light dropdown-toggle" type="button" id="languageDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+        <i class="bi bi-globe"></i> @SharedLocalizer["Language"]
+    </button>
+    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="languageDropdown">
+        <li>
+            <a class="dropdown-item @(ViewBag.CurrentCulture == "en" ? "active" : "")" href="?culture=en">
+                <span class="fi fi-us me-2"></span> @SharedLocalizer["English"]
+            </a>
+        </li>
+        <li>
+            <a class="dropdown-item @(ViewBag.CurrentCulture == "ar" ? "active" : "")" href="?culture=ar">
+                <span class="fi fi-sa me-2"></span> @SharedLocalizer["Arabic"]
+            </a>
+        </li>
+    </ul>
+</div>

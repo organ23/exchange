@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "wctIGFZ4V1pa3e1Qtbenm2OAQhYF3qaSeWPhmJp43e8=",
+  "Hash": "xWj/azjWneVmbKW93DHYsX5D8S7Z0rSm7egutekZXFY=",
   "Source": "ExchangeOffice.Web",
   "BasePath": "_content/ExchangeOffice.Web",
   "Mode": "Default",
@@ -49,6 +49,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "/home/cergo/exchange/ExchangeOffice.Web/obj/Debug/net7.0/scopedcss/projectbundle/ExchangeOffice.Web.bundle.scp.css"
+    },
+    {
+      "Identity": "/home/cergo/exchange/ExchangeOffice.Web/wwwroot/css/rtl.css",
+      "SourceId": "ExchangeOffice.Web",
+      "SourceType": "Discovered",
+      "ContentRoot": "/home/cergo/exchange/ExchangeOffice.Web/wwwroot/",
+      "BasePath": "_content/ExchangeOffice.Web",
+      "RelativePath": "css/rtl.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot/css/rtl.css"
     },
     {
       "Identity": "/home/cergo/exchange/ExchangeOffice.Web/wwwroot/css/site.css",

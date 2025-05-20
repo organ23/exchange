@@ -66,3 +66,16 @@
 /home/cergo/exchange/ExchangeOffice.Web/obj/Debug/net7.0/ExchangeOffice.Web.pdb
 /home/cergo/exchange/ExchangeOffice.Web/obj/Debug/net7.0/ExchangeOffice.Web.genruntimeconfig.cache
 /home/cergo/exchange/ExchangeOffice.Web/obj/Debug/net7.0/ref/ExchangeOffice.Web.dll
+/home/cergo/exchange/ExchangeOffice.Web/obj/Debug/net7.0/ExchangeOffice.Web.Resources.SharedResource.ar.resources
+/home/cergo/exchange/ExchangeOffice.Web/obj/Debug/net7.0/ExchangeOffice.Web.Resources.SharedResource.en.resources
+/home/cergo/exchange/ExchangeOffice.Web/obj/Debug/net7.0/ExchangeOffice.Web.csproj.GenerateResource.cache
+/home/cergo/exchange/ExchangeOffice.Web/bin/Debug/net7.0/ar/ExchangeOffice.Web.resources.dll
+/home/cergo/exchange/ExchangeOffice.Web/bin/Debug/net7.0/en/ExchangeOffice.Web.resources.dll
+/home/cergo/exchange/ExchangeOffice.Web/bin/Debug/net7.0/Microsoft.Extensions.Localization.dll
+/home/cergo/exchange/ExchangeOffice.Web/bin/Debug/net7.0/Microsoft.Extensions.Localization.Abstractions.dll
+/home/cergo/exchange/ExchangeOffice.Web/bin/Debug/net7.0/Microsoft.Extensions.Logging.Abstractions.dll
+/home/cergo/exchange/ExchangeOffice.Web/bin/Debug/net7.0/Microsoft.Extensions.Options.dll
+/home/cergo/exchange/ExchangeOffice.Web/obj/Debug/net7.0/ar/ExchangeOffice.Web.resources.cs
+/home/cergo/exchange/ExchangeOffice.Web/obj/Debug/net7.0/ar/ExchangeOffice.Web.resources.dll
+/home/cergo/exchange/ExchangeOffice.Web/obj/Debug/net7.0/en/ExchangeOffice.Web.resources.cs
+/home/cergo/exchange/ExchangeOffice.Web/obj/Debug/net7.0/en/ExchangeOffice.Web.resources.dll

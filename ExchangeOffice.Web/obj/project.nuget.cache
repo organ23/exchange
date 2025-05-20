@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "ywdUOH+eNGsFg932q2LJh7EFEqES/DAvMKfYVGZEPJ1kPIcE+9FkEf/F9bSuG9E5aDTrgMqxHqGThZpp2mMWCQ==",
+  "dgSpecHash": "u3QeR0bI4Jg70PTrK4UdV2REugr9vU+/tIgJcPAPj8vuGbsDccKzkhsIwTTY7lJwzXNz5JCZjb0AX78GPX+j4A==",
   "success": true,
   "projectFilePath": "/home/cergo/exchange/ExchangeOffice.Web/ExchangeOffice.Web.csproj",
   "expectedPackageFiles": [
@@ -17,9 +17,11 @@
     "/home/cergo/.nuget/packages/microsoft.extensions.dependencyinjection/7.0.0/microsoft.extensions.dependencyinjection.7.0.0.nupkg.sha512",
     "/home/cergo/.nuget/packages/microsoft.extensions.dependencyinjection.abstractions/7.0.0/microsoft.extensions.dependencyinjection.abstractions.7.0.0.nupkg.sha512",
     "/home/cergo/.nuget/packages/microsoft.extensions.dependencymodel/7.0.0/microsoft.extensions.dependencymodel.7.0.0.nupkg.sha512",
+    "/home/cergo/.nuget/packages/microsoft.extensions.localization/7.0.17/microsoft.extensions.localization.7.0.17.nupkg.sha512",
+    "/home/cergo/.nuget/packages/microsoft.extensions.localization.abstractions/7.0.17/microsoft.extensions.localization.abstractions.7.0.17.nupkg.sha512",
     "/home/cergo/.nuget/packages/microsoft.extensions.logging/7.0.0/microsoft.extensions.logging.7.0.0.nupkg.sha512",
-    "/home/cergo/.nuget/packages/microsoft.extensions.logging.abstractions/7.0.0/microsoft.extensions.logging.abstractions.7.0.0.nupkg.sha512",
-    "/home/cergo/.nuget/packages/microsoft.extensions.options/7.0.0/microsoft.extensions.options.7.0.0.nupkg.sha512",
+    "/home/cergo/.nuget/packages/microsoft.extensions.logging.abstractions/7.0.1/microsoft.extensions.logging.abstractions.7.0.1.nupkg.sha512",
+    "/home/cergo/.nuget/packages/microsoft.extensions.options/7.0.1/microsoft.extensions.options.7.0.1.nupkg.sha512",
     "/home/cergo/.nuget/packages/microsoft.extensions.primitives/7.0.0/microsoft.extensions.primitives.7.0.0.nupkg.sha512",
     "/home/cergo/.nuget/packages/sqlitepclraw.bundle_e_sqlite3/2.1.4/sqlitepclraw.bundle_e_sqlite3.2.1.4.nupkg.sha512",
     "/home/cergo/.nuget/packages/sqlitepclraw.core/2.1.4/sqlitepclraw.core.2.1.4.nupkg.sha512",

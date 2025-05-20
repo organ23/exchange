@@ -1,5 +1,8 @@
 @using Microsoft.AspNetCore.Http
 @using System.Security.Claims
+@using Microsoft.Extensions.Localization
+@using ExchangeOffice.Web.Resources
+@inject IStringLocalizer<SharedResource> SharedLocalizer
 
 @{
     var isAuthenticated = Context.User.Identity?.IsAuthenticated ?? false;
@@ -10,18 +13,18 @@
 @if (isAuthenticated)
 {
     <li class="nav-item">
-        <span class="nav-link text-light">Hello, @userName!</span>
+        <span class="nav-link text-light">@SharedLocalizer["Hello"], @userName!</span>
     </li>
     <li class="nav-item">
         <form class="form-inline" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Page("/Index", new { area = "" })" method="post">
-            <button type="submit" class="nav-link btn btn-link text-light"><i class="bi bi-box-arrow-right"></i> Logout</button>
+            <button type="submit" class="nav-link btn btn-link text-light"><i class="bi bi-box-arrow-right"></i> @SharedLocalizer["Logout"]</button>
         </form>
     </li>
 }
 else
 {
     <li class="nav-item">
-        <a class="nav-link text-light" asp-page="/Account/Login"><i class="bi bi-box-arrow-in-right"></i> Login</a>
+        <a class="nav-link text-light" asp-page="/Account/Login"><i class="bi bi-box-arrow-in-right"></i> @SharedLocalizer["Login"]</a>
     </li>
 }
 </ul>

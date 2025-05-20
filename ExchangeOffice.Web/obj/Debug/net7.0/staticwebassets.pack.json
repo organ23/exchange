@@ -5,6 +5,10 @@
       "PackagePath": "staticwebassets/ExchangeOffice.Web.bundle.scp.css"
     },
     {
+      "Id": "/home/cergo/exchange/ExchangeOffice.Web/wwwroot/css/rtl.css",
+      "PackagePath": "staticwebassets/css/rtl.css"
+    },
+    {
       "Id": "/home/cergo/exchange/ExchangeOffice.Web/wwwroot/css/site.css",
       "PackagePath": "staticwebassets/css/site.css"
     },
